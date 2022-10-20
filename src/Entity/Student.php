@@ -8,13 +8,20 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    
+
     private ?int $cin = null;
 
     #[ORM\Column(length: 100)]
     private ?string $username = null;
+    
+    #[ORM\ManyToOne(inversedBy: 'Student')]
+    #[ORM\JoinColumn(onDelete:"CASCADE")]
+    private ?Classroom $classroom = null;
     public function getcin(): ?string
     {
         return $this->cin;
@@ -25,7 +32,7 @@ class Student
 
         return $this;
     }
-
+    
    
 
     public function getUsername(): ?string
@@ -36,6 +43,18 @@ class Student
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getClassroom(): ?Classroom
+    {
+        return $this->classroom;
+    }
+
+    public function setClassroom(?Classroom $classroom): self
+    {
+        $this->classroom = $classroom;
 
         return $this;
     }
