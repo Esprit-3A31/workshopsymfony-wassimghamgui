@@ -39,17 +39,19 @@ class StudentController extends AbstractController
 
 
 
-    #[Route('/list', name: 'app_pizza')]
+    /*#[Route('/list', name: 'app_pizza')]
     public function list(){
         return $this->render('student/liste.html.twig');
-    }
+    }*/
 
 
     #[Route('/student', name: 'app_student')]
     public function lists(StudentRepository $repository){
         $students=$repository->findAll();
-        return $this->render('student/lists.html.twig',array('student'=>$students));
+        $sortbycin=$repository->sortbycin();
+        $topstudent=$repository->topStudent();
+        return $this->render('student/lists.html.twig',array('student'=>$students,'sortbycin'=> $sortbycin,'topstudent'=>$topstudent));
     }
 
-
+    
 }

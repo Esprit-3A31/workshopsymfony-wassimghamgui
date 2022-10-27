@@ -1,4 +1,23 @@
+<a href="/addStudentForm">Add student</a>
+<br> </br>
+<h5>List students</h5>
 {% for c in student %}
  name : {{ c.username }}
 nce : {{ c.cin }}
+classroom : {{c.classroom.name}}
+<br> </br>
+{% endfor %}
+
+<h5>List students sorted by cin</h5>
+{% for c in sortbycin %}
+ name : {{ c.username }}
+nce : {{ c.cin }}
+<br> </br>
+{% endfor %}
+
+<h5>top students</h5>
+{% for c in topstudent %}
+ name : {{ c.username }}
+moyenne : {{ c.moyenne }}
+<br> </br>
 {% endfor %}
